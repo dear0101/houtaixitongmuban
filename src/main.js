@@ -1,0 +1,13 @@
+import "@/assets/css/index.scss";
+import axios from "@config/axios";
+import router from "@/config/router/index.js";
+import VueAxios from "vue-axios";
+import { createApp } from "vue";
+import App from "@/App.vue";
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
+const app = createApp(App);
+app.use(router);
+app.use(ElementPlus);
+app.use(VueAxios, axios);
+app.mount("#app");

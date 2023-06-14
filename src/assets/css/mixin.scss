@@ -1,0 +1,15 @@
+//垂直居中
+@mixin flexCenter(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+//文本n行溢出隐藏
+@mixin ellipsisBasic($clamp:2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $clamp;
+  }

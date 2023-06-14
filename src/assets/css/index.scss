@@ -1,0 +1,16 @@
+@import "./normalize.scss";
+@import "@pub/cdn/common.css";
+@import "./layout.scss";
+@import "./mixin.scss";
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+* {
+    outline: none;
+}
+
+:root{
+    font-size: 16px;
+}

@@ -1,0 +1,37 @@
+
+$siderW:240px;
+$headerH:80px;
+
+.layout{
+    width:100% ;
+    height: 100%;
+    transition: all .3;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    height: $headerH;
+    width: 100%;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+}
+.layout_view{
+    box-sizing: border-box;
+    .siderbar{
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: $headerH;
+        width:$siderW;
+        box-shadow: 1px 1px 4px rgba(0, 21, 41, 0.08);
+    }
+    .views{
+        position: absolute;
+        left: $siderW;
+        top:$headerH;
+        width: calc(100% - $siderW);
+        height: calc(100% - $headerH);
+    }
+}
