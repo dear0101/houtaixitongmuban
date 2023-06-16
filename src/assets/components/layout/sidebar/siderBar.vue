@@ -6,7 +6,7 @@
       default-active="/"
       class="el-menu-vertical-demo"
       text-color="#fff"
-      :collapse="isCollapse"
+      :collapse="false"
       :collapse-transition="false"
       mode="vertical"
       :unique-opened="true"
@@ -28,7 +28,7 @@ import { ref } from "vue";
 const props = defineProps(["myRouter"]);
 import siderBarItem from "./siderBarItem.vue";
 import routerTitleIcon from "./routerTitleIcon.vue";
-let isCollapse = ref(false);
+import { storeToRefs } from "pinia";
 </script>
 
 <style></style>
