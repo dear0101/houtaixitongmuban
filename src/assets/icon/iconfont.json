@@ -1,0 +1,30 @@
+{
+  "id": "4126223",
+  "name": "admin-template",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1132695",
+      "name": "home",
+      "font_class": "shouye",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "3751951",
+      "name": "图表",
+      "font_class": "tubiao",
+      "unicode": "e83f",
+      "unicode_decimal": 59455
+    },
+    {
+      "icon_id": "16530784",
+      "name": "应用管理员管理",
+      "font_class": "yingyongguanliyuanguanli",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    }
+  ]
+}

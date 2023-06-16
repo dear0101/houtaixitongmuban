@@ -88,14 +88,14 @@ module.exports = {
     },
   },
   plugins: [
-    new DefinePlugin({
-      __VUE_OPTIONS_API__: true,
-      __VUE_PROD_DEVTOOLS__: false,
-    }),
+    // new DefinePlugin({
+    //   __VUE_OPTIONS_API__: true,
+    //   __VUE_PROD_DEVTOOLS__: false,
+    // }),
     new CleanWebpackPlugin(), //打包前清空打包目录
     new ProgressPlugin(), //打包进度展示
     new VueLoaderPlugin(), //处理vue文件
-    new CssMinimizerPlugin(), //将css压缩
+    // new CssMinimizerPlugin(), //将css压缩
     new MiniCssExtractPlugin({
       //将css提取出单独文件
       filename: "css/[name].[chunkhash:8].css",

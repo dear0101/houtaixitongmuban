@@ -1,18 +1,16 @@
-import Home from "@/pages/home/index.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/home/index",
-    name: "Home",
-    component: Home,
-    meta: {
-      keepAlive: false,
-    },
+    redirect: "/index",
+    meta: { icon: "shouye" },
+    component: import(
+      /* webpackChunkName: "users" */ "@comps/layout/index.vue"
+    ),
     children: [
       {
-        path: "/home/index",
+        path: "index",
         component: () =>
-          import(/* webpackChunkName: "views" */ "@/pages/home/wel.vue"),
+          import(/* webpackChunkName: "views" */ "@/pages/home/index.vue"),
       },
     ],
   },
