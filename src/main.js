@@ -1,15 +1,15 @@
 import "@/assets/css/index.scss";
-import axios from "@config/axios";
+import "./permission.js";
+import axios from "@conf/axios";
 import router from "@/config/router/index.js";
 import VueAxios from "vue-axios";
 import { createApp } from "vue";
 import App from "@/App.vue";
-import { createPinia } from "pinia";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
+import pinia from "@/store/index.js";
 const app = createApp(App);
 app.use(router);
-const pinia = createPinia();
 app.use(pinia);
 app.use(ElementPlus);
 app.use(VueAxios, axios);

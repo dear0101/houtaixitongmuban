@@ -1,4 +1,4 @@
-import request from "@config/axios";
+import request from "@conf/axios";
 
 /**
  * 获取验证码

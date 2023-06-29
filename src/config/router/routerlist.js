@@ -8,21 +8,21 @@ const myRouters = {
     {
       path: "user",
       name: "用户管理",
-      meta: { icon: "" },
+      meta: { icon: "", keepAlive: true, isTab: true },
       component: () =>
         import(/* webpackChunkName: "users" */ "@/pages/admin/user/index.vue"),
     },
     {
       path: "roles",
       name: "角色管理",
-      meta: { icon: "" },
+      meta: { icon: "", keepAlive: true, isTab: true },
       component: () =>
         import(/* webpackChunkName: "roles" */ "@/pages/admin/roles/index.vue"),
     },
     {
       path: "auth",
       name: "权限管理",
-      meta: { icon: "" },
+      meta: { icon: "", keepAlive: true, isTab: true },
       component: () =>
         import(/* webpackChunkName: "auth" */ "@/pages/admin/auth/index.vue"),
     },

@@ -25,7 +25,7 @@ module.exports = {
       "@": path.resolve(__dirname, "./src"),
       "@pub": path.resolve(__dirname, "./public"),
       "@api": path.resolve(__dirname, "./src/api"),
-      "@config": path.resolve(__dirname, "./src/config"),
+      "@conf": path.resolve(__dirname, "./src/config"),
       "@assets": path.resolve(__dirname, "./src/assets"),
       "@comps": path.resolve(__dirname, "./src/assets/components"),
     },

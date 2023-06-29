@@ -31,7 +31,7 @@ $headerH:80px;
         position: absolute;
         left: $siderW;
         top:$headerH;
-        width: calc(100% - $siderW);
-        height: calc(100% - $headerH);
+        width: calc(100% - #{$siderW});
+        height: calc(100% - #{$headerH});
     }
 }

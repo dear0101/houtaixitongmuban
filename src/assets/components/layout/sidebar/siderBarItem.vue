@@ -1,33 +1,29 @@
 <template>
-  <template v-if="routerItem.children">
-    <el-sub-menu>
-      <template #title>
-        <router-title-icon
-          v-if="routerItem.meta.icon"
-          :iconClass="routerItem.meta.icon"
-        />
-        <span>{{ routerItem.name }}</span>
-      </template>
-      <SiderBarItem
-        v-for="child in routerItem.children"
-        :key="child.path"
-        :routerItem="child"
-      />
-    </el-sub-menu>
-  </template>
-  <template v-else>
-    <el-menu-item :index="resolvePath(routerItem.path)">
-      <router-title-icon
-        v-if="routerItem.meta.icon"
-        :iconClass="routerItem.meta.icon"
-      />
-      <span>{{ routerItem.name }}</span></el-menu-item
-    >
+  <template v-for="item in props.routerItem" :key="item.path">
+    <template v-if="item.children">
+      <el-sub-menu :index="''">
+        <template #title>
+          <router-title-icon
+            v-if="item.meta.icon"
+            :iconClass="item.meta.icon"
+          />
+          <span>{{ item.name }}</span>
+        </template>
+        <SiderBarItem :routerItem="item.children" :basePath="item.path" />
+      </el-sub-menu>
+    </template>
+    <template v-else>
+      <el-menu-item :index="resolvePath(item.path)">
+        <router-title-icon v-if="item.meta.icon" :iconClass="item.meta.icon" />
+        <span>{{ item.name }}</span></el-menu-item
+      >
+    </template>
   </template>
 </template>
 <script setup>
 import { reactive } from "vue";
 import routerTitleIcon from "./routerTitleIcon.vue";
+import { useRouter, useRoute } from "vue-router";
 const props = defineProps({
   routerItem: {
     type: Object,
@@ -38,11 +34,9 @@ const props = defineProps({
     default: "",
   },
 });
+const routers = useRoute();
 const resolvePath = (path) => {
-  let fullPath = "";
-  fullPath = "/admin" + "/" + path;
-  console.log(fullPath, "full");
-  return fullPath;
+  return props.basePath + "/" + path;
 };
 </script>
 
