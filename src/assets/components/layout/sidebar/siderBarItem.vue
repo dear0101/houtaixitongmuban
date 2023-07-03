@@ -1,7 +1,7 @@
 <template>
   <template v-for="item in props.routerItem" :key="item.path">
     <template v-if="item.children">
-      <el-sub-menu :index="''">
+      <el-sub-menu :index="item.path">
         <template #title>
           <router-title-icon
             v-if="item.meta.icon"

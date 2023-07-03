@@ -36,6 +36,7 @@ import tags from "./tag/index.vue";
 import SiderBar from "./sidebar/siderBar.vue";
 import { reactive } from "vue";
 import { useRoute } from "vue-router";
+import "@/assets/hook/useFullscreen.js";
 const routes = useRoute();
 </script>
 

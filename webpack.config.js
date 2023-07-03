@@ -87,6 +87,7 @@ module.exports = {
       },
     },
   },
+
   plugins: [
     // new DefinePlugin({
     //   __VUE_OPTIONS_API__: true,

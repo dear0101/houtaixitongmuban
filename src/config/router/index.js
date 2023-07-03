@@ -1,12 +1,11 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import routes from "./pagerouter";
 import myRouters from "./routerlist";
-import compRouter from "./routes";
+import compRoutes from "./routes";
 
-export const permissionsRouter = [myRouters];
+export const permissionsRouter = [myRouters, compRoutes];
 export const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...routes, ...permissionsRouter, ...compRouter],
+  routes: [...routes, ...permissionsRouter],
 });
-
 export default router;

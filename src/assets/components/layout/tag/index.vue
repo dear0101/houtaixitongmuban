@@ -12,9 +12,11 @@
         closable
         v-for="item in keepAliveComponent"
         :key="item.name"
-        :label="item.label"
         :name="item.name"
       >
+        <template #label>
+          <span class="title">{{ item.label }}</span>
+        </template>
       </el-tab-pane>
     </el-tabs>
     <el-dropdown size="default" split-button>
@@ -60,7 +62,12 @@ const handlerClickTab = (cur) => {
   router.push({ path: currentRoutes.path });
 };
 const handlerRemoveTab = (cur) => {
-  console.log(cur);
+  console.log(cur, currentValue);
+  if (currentValue.value == cur) {
+    let index = keepAliveComponent.value.findIndex((item) => item.name === cur);
+    let currentCom = keepAliveComponent.value[index - 1];
+    router.push({ path: currentCom.path });
+  }
   AliveComponentStore.DelKeepAliveComp(cur);
 };
 const handlerClickCloseAll = async (cur) => {
@@ -92,8 +99,15 @@ const handlerClickCloseOthers = () => {
         border-radius: 4px;
         border-bottom: 1px solid var(--el-border-color-light);
         .el-tabs__item {
-          width: 85px;
+          width: 100px;
           height: 28px;
+          padding: 0 10px;
+          .title {
+            width: 60px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
           .el-icon {
             flex-shrink: 0;
           }

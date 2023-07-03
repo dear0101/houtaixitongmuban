@@ -1,7 +1,5 @@
 import { defineStore, createPinia } from "pinia";
-import piniaPluginPersist from "pinia-plugin-persist";
-const pinia = createPinia();
-pinia.use(piniaPluginPersist);
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 const state = {
   isFullScreen: false,
@@ -10,10 +8,13 @@ export const useBasicStore = defineStore("basic", {
   state: () => state,
   getters: {},
   actions: {
-    updateFullScreen: (state, curState) => {},
+    updateFullScreen: (curState) => {
+      this.$patch((state) => {
+        state.isFullScreen = curState;
+      });
+    },
   },
 });
-
 export const usekeepAliveComponent = defineStore("keepAliveComponent", {
   state: () => {
     return {
@@ -32,13 +33,19 @@ export const usekeepAliveComponent = defineStore("keepAliveComponent", {
           (item) => item.name == curState.name
         );
         if (isExist !== -1) return;
+        if (state.keepAliveComp.length > 4) {
+          state.keepAliveComp.shift();
+          state.keepAliveComp.push(curState);
+          return;
+        }
         state.keepAliveComp.push(curState);
+        console.log(state.keepAliveComp.length);
       });
     },
     DelKeepAliveComp(curState) {
       this.$patch((state) => {
         let index = state.keepAliveComp.findIndex(
-          (item) => item.name === curState
+          (item) => item.name === curState.name
         );
         if (index == -1) return;
         state.keepAliveComp.splice(index, 1);
@@ -58,7 +65,10 @@ export const usekeepAliveComponent = defineStore("keepAliveComponent", {
     },
   },
   persist: {
-    enabled: true,
+    storage: localStorage,
   },
 });
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
+
 export default pinia;
