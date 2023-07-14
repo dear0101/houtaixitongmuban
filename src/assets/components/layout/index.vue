@@ -31,12 +31,24 @@
 </template>
 
 <script setup>
-import Header from "./header/header.vue";
+import Header from "./header/index.vue";
 import tags from "./tag/index.vue";
 import SiderBar from "./sidebar/siderBar.vue";
 import { reactive } from "vue";
+import screenfull from "screenfull";
 import { useRoute } from "vue-router";
-import "@/assets/hook/useFullscreen.js";
+import {
+  useOnFullscreen,
+  useOffFullscreen,
+} from "@/assets/hook/useFullscreen.js";
+import { onMounted, onUnmounted } from "vue";
+onMounted(() => {
+  useOnFullscreen();
+});
+onUnmounted(() => {
+  useOffFullscreen();
+});
+
 const routes = useRoute();
 </script>
 

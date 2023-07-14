@@ -39,7 +39,20 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+          {
+            loader: "sass-resources-loader",
+            options: {
+              sourceMap: true,
+              resources: [
+                path.resolve(__dirname, "./src/assets/css/mixin.scss"),
+              ],
+            },
+          },
+        ],
       },
       {
         test: /\.vue$/,
@@ -86,6 +99,7 @@ module.exports = {
         pathRewrite: { "^/": "" },
       },
     },
+    setupMiddlewares: require("./src/config/mock.js"),
   },
 
   plugins: [

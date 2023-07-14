@@ -1,7 +1,7 @@
 @import "./normalize.scss";
 @import "@pub/cdn/common.css";
 @import "./layout.scss";
-@import "./mixin.scss";
+// @import "./mixin.scss";
 //字体图标
 @import '../icon/iconfont.css';
 a {
@@ -15,4 +15,5 @@ a {
 
 :root{
     font-size: 16px;
+    color: #4d4d4d;
 }

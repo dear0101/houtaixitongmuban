@@ -3,14 +3,20 @@ import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 const state = {
   isFullScreen: false,
+  language: "zh",
 };
 export const useBasicStore = defineStore("basic", {
   state: () => state,
   getters: {},
   actions: {
-    updateFullScreen: (curState) => {
+    updateFullScreen(curState) {
       this.$patch((state) => {
         state.isFullScreen = curState;
+      });
+    },
+    updateLanguage(curState) {
+      this.$patch((state) => {
+        state.language = curState;
       });
     },
   },
@@ -33,6 +39,7 @@ export const usekeepAliveComponent = defineStore("keepAliveComponent", {
           (item) => item.name == curState.name
         );
         if (isExist !== -1) return;
+        //当tag的数量大于4就删除第一个
         if (state.keepAliveComp.length > 4) {
           state.keepAliveComp.shift();
           state.keepAliveComp.push(curState);
