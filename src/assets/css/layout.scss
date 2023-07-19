@@ -33,5 +33,10 @@ $headerH:80px;
         top:$headerH;
         width: calc(100% - #{$siderW});
         height: calc(100% - #{$headerH});
+        .view-content{
+            width: 100%;
+            height: calc(100% - 35px);
+            overflow: hidden;
+        }
     }
 }

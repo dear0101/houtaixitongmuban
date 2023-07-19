@@ -103,10 +103,10 @@ module.exports = {
   },
 
   plugins: [
-    // new DefinePlugin({
+    // {
     //   __VUE_OPTIONS_API__: true,
     //   __VUE_PROD_DEVTOOLS__: false,
-    // }),
+    // },
     new CleanWebpackPlugin(), //打包前清空打包目录
     new ProgressPlugin(), //打包进度展示
     new VueLoaderPlugin(), //处理vue文件
