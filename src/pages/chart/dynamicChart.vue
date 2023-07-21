@@ -22,43 +22,68 @@
       <!-- </draggable> -->
     </div>
     <div class="chart_view">
+      <!-- <draggable> -->
+      <!-- <div
+        ref="targetDropElement"
+        :class="['canvas_box', isshowBorder ? 'shawdow' : '']"
+      ></div> -->
       <div
         ref="targetDropElement"
         :class="['canvas_box', isshowBorder ? 'shawdow' : '']"
+      ></div>
+      <el-drawer
+        v-model="isshowDrawer"
+        title="I am the title"
+        direction="rtl"
+        :append-to-body="false"
+        :modal="false"
+        :before-close="handleClose"
       >
-        <canvas id="canvas"></canvas>
-      </div>
+        <span>Hi, there!</span>
+      </el-drawer>
+      <!-- </draggable> -->
     </div>
   </div>
 </template>
 
 <script setup>
+const targetDropElement = ref(null);
 import chartItem from "./chartItem.vue";
-import { onMounted, ref } from "vue";
-// import draggable from "vuedraggable";
+import { onMounted, ref, reactive, nextTick, computed } from "vue";
+import draggable from "vuedraggable";
+import { useChartLineChart } from "./useChart";
 import { CHART } from "./chartConfig";
-import { reactive } from "vue";
 const chartArray = reactive(CHART);
 let chartItemData = ref({});
 let isshowBorder = ref(false);
-const targetDropElement = ref(null);
 const handlerDragstart = (msg) => {
   isshowBorder.value = true;
   chartItemData.value = msg;
   console.log("开始拖拽");
 };
+import { useBasicStore } from "@/store/index.js";
+const BasicStore = useBasicStore();
+let isshowDrawer = computed(() => BasicStore.isshowDrawer);
 const handlerDragend = (msg) => {
   isshowBorder.value = false;
 };
+const handleClose = () => {
+  BasicStore.updateShowDrawer(false);
+};
 onMounted(() => {
-  console.log(targetDropElement.value);
-  targetDropElement.value.addEventListener("dragover", (event) => {
-    event.preventDefault();
+  console.log(targetDropElement);
+  nextTick(() => {
+    targetDropElement.value.addEventListener("dragover", (event) => {
+      event.preventDefault();
+    });
+    targetDropElement.value.addEventListener("drop", (event) => {
+      event.preventDefault();
+      console.log("在目标内", chartItemData);
+      useChartLineChart(targetDropElement.value, chartItemData.value.type);
+    });
   });
-
-  targetDropElement.value.addEventListener("drop", (event) => {
-    event.preventDefault();
-    console.log("在目标内", chartItemData);
+  document.addEventListener("click", (e) => {
+    BasicStore.updateShowDrawer(false);
   });
 });
 </script>
@@ -85,8 +110,12 @@ onMounted(() => {
     padding: 20px;
     .canvas_box {
       width: 100%;
+      position: relative;
       height: 100%;
       border: 1px solid rgba(0, 0, 0, 0.08);
+      .active {
+        border: 1px solid #9bf0ff;
+      }
     }
     .shawdow {
       box-shadow: 0 0 5px rgb(3, 209, 250);

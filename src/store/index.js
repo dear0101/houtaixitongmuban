@@ -2,8 +2,9 @@ import { defineStore, createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 const state = {
-  isFullScreen: false,
+  isFullScreen: false, //是否全屏
   language: "zh",
+  isshowDrawer: false, //是否显示抽屉
 };
 export const useBasicStore = defineStore("basic", {
   state: () => state,
@@ -17,6 +18,11 @@ export const useBasicStore = defineStore("basic", {
     updateLanguage(curState) {
       this.$patch((state) => {
         state.language = curState;
+      });
+    },
+    updateShowDrawer(curState) {
+      this.$patch((state) => {
+        state.isshowDrawer = curState;
       });
     },
   },
